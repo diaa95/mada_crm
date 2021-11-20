@@ -2,28 +2,28 @@
 
 start guide:
 
-1- clone the repository on your machine
-2- change the credintils of the database on settings.py file
-3- run the following commands:
+* clone the repository on your machine
+* change the credintils of the database on settings.py file make sure to create mada_crm schema
+* run the following commands:
 
-'''
+```aidl
 python manage.py makemigrations
 python manage.py migrate
-
 python manage.py createsuperuser
-'''
+```
 and insert superuser info
 
 then you run the server:
-'''
+```aidl
 python manage.py runserver
-'''
+```
 
-go to localhost:8000/admin and create employees users and services
+go to localhost:8000/admin and create employees accounts and services
 
-you are good to go
+and you are good to go
 
-screenshots:
+**Screenshots:**
+
 ![login](https://github.com/diaa95/mada_crm/blob/master/screeshots/login.PNG)
 ![homePage](https://github.com/diaa95/mada_crm/blob/master/screeshots/home.PNG)
 ![addCustomer](https://github.com/diaa95/mada_crm/blob/master/screeshots/add_customer.PNG)
