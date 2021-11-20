@@ -1,0 +1,6 @@
+<td><p>
+    {% for service in customer.services.all %}
+    <a href="service/{{service.id}}">{{service.title}},</a>
+    {% endfor %}
+</p>
+</td>

@@ -1,0 +1,36 @@
+{% extends "main/base.html" %}
+
+{% block title %}
+Customer Services
+{% endblock %}
+
+{% block page_content %}
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">#ID</th>
+        <th scope="col">Title</th>
+        <th scope="col">Description</th>
+    </tr>
+    </thead>
+    <tbody>
+
+
+    {% for service in all_services %}
+
+    <tr>
+        <th scope="row">{{service.id}}</th>
+        <td>{{service.title}}</td>
+        <td>{{service.desc}}</td>
+        {% if service not in customer.services.all %}
+            <td><button class="btn btn-dark"><a class="text-white" href="/add_service/{{customer.id}}/{{service.id}}">Add</a></button></td>
+        {% else %}
+            <td><button class="btn btn-dark"><a class="text-white" href="/delete_service/{{customer.id}}/{{service.id}}">Stop</a></button></td>
+        {% endif %}
+    </tr>
+
+
+    {% endfor %}
+</table>
+{% endblock %}

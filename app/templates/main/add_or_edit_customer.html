@@ -1,0 +1,79 @@
+{% extends "main/base.html" %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    {% block title %}
+        {% if customer == None %}
+        Add Customer
+        {% else %}
+        Edit Customer
+        {% endif %}
+    {% endblock %}
+
+
+{% block page_content %}
+    {% if customer == None %}
+        <form action="/add_customer" method="post">
+            {% csrf_token %}
+            <div class="g-3 align-items-center">
+                <div class="col-lg-offset-2">
+                    <label for="f_name" class="form-label">First Name</label>
+                </div>
+                <div class="col-auto">
+                    <input type="text" class="form-control col-2" id="f_name" name="f_name" value="{{customer.first_name}}">
+                </div>
+            </div>
+            <div class="g-3 align-items-center">
+                <div class="col-lg-offset-2">
+                    <label for="l_name" class="form-label">Last Name</label>
+                </div>
+                <div class="col-auto">
+                    <input type="text" class="form-control col-2" id="l_name" name="l_name" value="{{customer.last_name}}">
+                </div>
+            </div>
+            <div class="g-3 align-items-center">
+                <div class="col-lg-offset-2">
+                    <label for="address" class="form-label">Address</label>
+                </div>
+                <div class="col-auto">
+                    <input type="text" class="form-control col-2" id="address" name="address" value="{{customer.address}}">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-dark">Add</button>
+
+        </form>
+    {% else %}
+        <form action="/update_customer/{{customer.id}}" method="post">
+            {% csrf_token %}
+            <div class="g-3 align-items-center">
+                <div class="col-lg-offset-2">
+                    <label for="f_name" class="form-label">First Name</label>
+                </div>
+                <div class="col-auto">
+                    <input type="text" class="form-control col-2" id="f_name" name="f_name" value="{{customer.first_name}}">
+                </div>
+            </div>
+            <div class="g-3 align-items-center">
+                <div class="col-lg-offset-2">
+                    <label for="l_name" class="form-label">Last Name</label>
+                </div>
+                <div class="col-auto">
+                    <input type="text" class="form-control col-2" id="l_name" name="l_name" value="{{customer.last_name}}">
+                </div>
+            </div>
+            <div class="g-3 align-items-center">
+                <div class="col-lg-offset-2">
+                    <label for="address" class="form-label">Address</label>
+                </div>
+                <div class="col-auto">
+                    <input type="text" class="form-control col-2" id="address" name="address" value="{{customer.address}}">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-dark">Update</button>
+
+        </form>
+        <p>If you wish to <span class="text-danger">Delete</span> customer click <a href="/delete_customer/{{customer.id}}">here</a></p>
+    {% endif %}
+{% endblock %}
+
+
+

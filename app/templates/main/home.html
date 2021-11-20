@@ -1,0 +1,51 @@
+{% extends "main/base.html" %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block page_content %}
+<div class="form-outline mb-4 d-flex ">
+    <div class="row d-flex align-items-center flex-column">
+        <form method="get" action="/home/search">
+        <input type="search" class="form-control" id="search" name="search" placeholder="Search Customer">
+            <button type="submit" class="btn btn-dark">Search</button>
+        </form>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">#ID</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Address</th>
+        <th scope="col">Services</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% if all_customers == None %}
+        <p>No results</p>
+    {% else %}
+        {% for customer in all_customers %}
+            <tr>
+                <th scope="row">{{customer.id}}</th>
+                <td>{{customer.first_name}}</td>
+                <td>{{customer.last_name}}</td>
+                <td>{{customer.address}}</td>
+                <td>
+                    <p>
+                        {% for service in customer.services.all%}
+                        {{service.title}},
+                        {% endfor %}
+                    </p>
+                </td>
+                <td><button class="btn btn-dark"><a class="text-white" href="/services/{{customer.id}}">Manage Services</a></button></td>
+                <td><button class="btn btn-dark"><a class="text-white" href="/edit_customer/{{customer.id}}">Edit</a></button></td>
+            </tr>
+        {% endfor %}
+    {% endif %}
+</table>
+<p>If you wish to <span class="text-primary">Add</span> new customer click <a href="/new_customer">here</a></p>
+{% endblock %}
